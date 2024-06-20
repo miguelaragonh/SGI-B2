@@ -4,7 +4,7 @@ const T_Estados = require("./T_Estados");
 const T_Prioridad = require("./T_Prioridad");
 const T_Riesgo = require("./T_Riesgo");
 const T_Afectacion = require("./T_Afectacion");
-const T_Categoria = require("./T_Categoria");
+const T_Categoria = require("./t_categoria");
 
 class T_Incidencias extends Model {}
 

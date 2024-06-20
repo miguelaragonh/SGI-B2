@@ -27,8 +27,8 @@ T_Categoria.init(
   },
   {
     sequelize,
-    modelName: "T_Categoria",
-    tableName: "T_Categoria",
+    modelName: "t_categoria",
+    tableName: "t_categoria",
     timestamps: false,
   }
 );
