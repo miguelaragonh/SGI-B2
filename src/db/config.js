@@ -7,6 +7,6 @@ module.exports = new Sequelize(
   {
     host: process.env.MYSQLHOST || "127.0.0.1",
     dialect: process.env.DB_DIALECT || "mysql",
-    port: process.env.MYSQLPORT|| 3306
+    port: process.env.MYSQLPORT|| 13715
   }
 ); 
