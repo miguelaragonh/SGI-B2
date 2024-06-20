@@ -2,9 +2,9 @@
 const sequelize = require("../db/config");
 const { Model, DataTypes } = require("sequelize");
 
-class T_Categoria extends Model {}
+class t_categoria extends Model {}
 
-T_Categoria.init(
+t_categoria.init(
   {
     CN_Id_Categoria: {
       allowNull: false,
@@ -33,4 +33,4 @@ T_Categoria.init(
   }
 );
 
-module.exports = T_Categoria;
+module.exports = t_categoria;
