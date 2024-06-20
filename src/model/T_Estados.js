@@ -27,7 +27,7 @@ T_Estados.init(
   {
     sequelize,
     modelName: "T_Estados",
-    tableName: "T_Estados",
+    tableName: "t_estados",
     timestamps: false,
   }
 );
