@@ -2,9 +2,9 @@
 const sequelize = require("../db/config");
 const { Model, DataTypes } = require("sequelize");
 
-class T_Afectacion extends Model {}
+class t_afectacion extends Model {}
 
-T_Afectacion.init(
+t_afectacion.init(
   {
     CN_Id_Afectacion: {
       allowNull: false,
@@ -28,9 +28,9 @@ T_Afectacion.init(
   {
     sequelize,
     modelName: "T_Afectacion",
-    tableName: "T_Afectacion",
+    tableName: "t_afectacion",
     timestamps: false,
   }
 );
 
-module.exports = T_Afectacion;
+module.exports = t_afectacion;
