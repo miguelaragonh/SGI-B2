@@ -4,7 +4,7 @@ const T_Estados = require("./T_Estados");
 const T_Prioridad = require("./T_Prioridad");
 const T_Riesgo = require("./T_Riesgo");
 const T_Afectacion = require("./T_Afectacion");
-const T_Categoria = require("./t_categoria");
+const t_categoria = require("./t_categoria");
 
 class T_Incidencias extends Model {}
 
@@ -69,7 +69,7 @@ T_Incidencias.init(
       allowNull: true,
       type: DataTypes.INTEGER,
       references: {
-        model: T_Categoria,
+        model: t_categoria,
         key: "CN_Id_Categoria",
       },
     },
@@ -97,7 +97,7 @@ T_Incidencias.init(
 T_Incidencias.T_Prioridad = T_Prioridad.belongsTo(T_Prioridad, {foreignKey: "CN_Id_Prioridad",});
 T_Incidencias.T_Riesgo = T_Riesgo.belongsTo(T_Riesgo, {foreignKey: "CN_Id_Riesgo",});
 T_Incidencias.T_Afectacion = T_Afectacion.belongsTo(T_Afectacion, {foreignKey: "CN_Id_Afectacion",});
-T_Incidencias.T_Categoria = T_Categoria.belongsTo(T_Categoria, {foreignKey: "CN_Id_Categoria",});
+T_Incidencias.t_categoria = t_categoria.belongsTo(t_categoria, {foreignKey: "CN_Id_Categoria",});
 T_Incidencias.T_Estados = T_Estados.belongsTo(T_Estados, {foreignKey: "CN_Id_Estado",})
 ;
 
