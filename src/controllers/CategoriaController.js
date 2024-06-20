@@ -1,5 +1,5 @@
 
-const Categoria= require("../model/t_categoria");
+const Categoria= require("../model/T_Categoria");
 
 module.exports = {
 
