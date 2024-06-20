@@ -27,7 +27,7 @@ T_Prioridad.init(
   {
     sequelize,
     modelName: "T_Prioridad",
-    tableName: "T_Prioridad",
+    tableName: "t_prioridad",
     timestamps: false,
   }
 );

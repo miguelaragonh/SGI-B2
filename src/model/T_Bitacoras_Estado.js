@@ -52,7 +52,7 @@ T_Bitacoras_Estado.init(
   {
     sequelize,
     modelName: "T_Bitacoras_Estado",
-    tableName: "T_Bitacoras_Estado",
+    tableName: "t_bitacoras_estado",
     timestamps: false,
   }
 );

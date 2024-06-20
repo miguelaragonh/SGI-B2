@@ -33,7 +33,7 @@ T_Crear_Incidencias.init(
   {
     sequelize,
     modelName: "T_Crear_Incidencias",
-    tableName: "T_Crear_Incidencias",
+    tableName: "t_crear_incidencias",
     timestamps: false,
   }
 );

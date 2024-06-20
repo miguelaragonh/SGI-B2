@@ -19,7 +19,7 @@ T_Departamento.init(
   {
     sequelize,
     modelName: "T_Departamento",
-    tableName: "T_Departamento",
+    tableName: "t_departamento",
     timestamps: false,
   }
 );

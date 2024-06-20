@@ -33,7 +33,7 @@ T_Imagenes_Incidentes.init(
   {
     sequelize,
     modelName: "T_Imagenes_Incidentes",
-    tableName: "T_Imagenes_Incidentes",
+    tableName: "t_imagenes_incidentes",
     timestamps: false,
   }
 );

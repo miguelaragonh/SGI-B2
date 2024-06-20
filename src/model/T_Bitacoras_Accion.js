@@ -43,7 +43,7 @@ T_Bitacoras_Accion.init(
   {
     sequelize,
     modelName: "T_Bitacoras_Accion",
-    tableName: "T_Bitacoras_Accion",
+    tableName: "t_bitacoras_accion",
     timestamps: false,
   }
 );

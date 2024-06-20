@@ -27,7 +27,7 @@ T_Riesgo.init(
   {
     sequelize,
     modelName: "T_Riesgo",
-    tableName: "T_Riesgo",
+    tableName: "t_riesgo",
     timestamps: false,
   }
 );

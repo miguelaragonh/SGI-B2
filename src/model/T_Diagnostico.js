@@ -31,7 +31,7 @@ T_Diagnostico.init(
   {
     sequelize,
     modelName: "T_Diagnostico",
-    tableName: "T_Diagnostico",
+    tableName: "t_diagnostico",
     timestamps: false,
   }
 );

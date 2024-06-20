@@ -20,7 +20,7 @@ T_Pantallas.init(
   {
     sequelize,
     modelName: "T_Pantallas",
-    tableName: "T_Pantallas",
+    tableName: "t_pantallas",
     timestamps: false,
   }
 );

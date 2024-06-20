@@ -33,7 +33,7 @@ T_Usuario_Rol.init(
   {
     sequelize,
     modelName: "T_Usuario_Rol",
-    tableName: "T_Usuario_Rol",
+    tableName: "t_usuario_rol",
     timestamps: false,
   }
 );

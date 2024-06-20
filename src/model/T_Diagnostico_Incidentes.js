@@ -42,7 +42,7 @@ T_Diagnostico_Incidentes.init(
   {
     sequelize,
     modelName: "T_Diagnostico_Incidentes",
-    tableName: "T_Diagnostico_Incidentes",
+    tableName: "t_diagnostico_incidentes",
     timestamps: false,
   }
 );

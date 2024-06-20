@@ -89,7 +89,7 @@ T_Incidencias.init(
   {
     sequelize,
     modelName: "T_Incidencias",
-    tableName: "T_Incidencias",
+    tableName: "t_incidencias",
     timestamps: false,
   }
 );

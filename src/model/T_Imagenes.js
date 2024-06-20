@@ -20,7 +20,7 @@ T_Imagenes.init(
   {
     sequelize,
     modelName: "T_Imagenes",
-    tableName: "T_Imagenes",
+    tableName: "t_imagenes",
     timestamps: false,
   }
 );

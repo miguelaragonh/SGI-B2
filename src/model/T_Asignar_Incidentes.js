@@ -33,7 +33,7 @@ T_Asignar_Incidentes.init(
   {
     sequelize,
     modelName: "T_Asignar_Incidentes",
-    tableName: "T_Asignar_Incidentes",
+    tableName: "t_asignar_incidentes",
     timestamps: false,
   }
 );
