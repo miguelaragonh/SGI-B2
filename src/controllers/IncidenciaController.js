@@ -48,7 +48,7 @@ async function enviarCorreo(idUsuario, idIncidencia) {
 
 async function guardarImagen(id, img) {
   console.log(img);
-  
+
   const imagen = T_Imagenes.create({
     CI_imagen: img,
 
@@ -195,7 +195,15 @@ module.exports = {
       CN_Id_Estado: 1,
     })
       .then((incidencia) => {
-        res.status(201).json({
+    registroIncidenteUsuario(usuario, id);
+    guardarImagen(id, img);
+    T_Bitacoras_Estado.create({
+      CT_Codigo_Usuario: usuario,
+      CN_Id_Estado: 0,
+      CN_Id_Nuevo_Estado: 1,
+      CT_Id_Incidencia: id,
+    });
+    res.status(201).json({
           incidencia,
         });
       })
@@ -203,14 +211,7 @@ module.exports = {
         console.log(e);
         res.status(500).json(e);
       });
-    registroIncidenteUsuario(usuario, id);
-    guardarImagen(id, img);
-    await T_Bitacoras_Estado.create({
-      CT_Codigo_Usuario: usuario,
-      CN_Id_Estado: 0,
-      CN_Id_Nuevo_Estado: 1,
-      CT_Id_Incidencia: id,
-    });
+    
   },
   async actualizarIncidencia(req, res) {
     try {
