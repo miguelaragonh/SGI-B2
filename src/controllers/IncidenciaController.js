@@ -18,14 +18,29 @@ async function idIncidencia() {
   console.log(cod);
   return cod;
 }
-async function registroIncidenteUsuario(idUsuario, idIncidencia) {
+async function registroIncidenteUsuario(idUsuario, idIncidencia, transaction) {
   console.log(idUsuario, idIncidencia);
-  T_Crear_Incidencias.create({
+  await T_Crear_Incidencias.create({
     CT_Id_Incidencia: idIncidencia,
     CT_Codigo_Usuario: idUsuario,
-  });
+  }, { transaction });
 }
 
+async function guardarImagen(id, img, transaction) {
+  try {
+    const imagen = await T_Imagenes.create({
+      CI_imagen: img,
+    }, { transaction });
+
+    await T_Imagenes_Incidentes.create({
+      CT_Id_Incidencia: id,
+      CN_Id_Imagen: imagen.CN_Id_Imagen,
+    }, { transaction });
+  } catch (e) {
+    console.log(e);
+    throw e; // Re-throw the error to be caught by the outer try/catch
+  }
+}
 async function enviarCorreo(idUsuario, idIncidencia) {
   const usuario = await Usuario.findOne({
     where: {
@@ -46,9 +61,7 @@ async function enviarCorreo(idUsuario, idIncidencia) {
   console.log(correo);
 }
 
-async function guardarImagen(id, img) {
-  console.log(img);
-
+/*async function guardarImagen(id, img) {
   const imagen = T_Imagenes.create({
     CI_imagen: img,
 
@@ -69,7 +82,7 @@ async function guardarImagen(id, img) {
       console.log(e);
       res.status(500).json(e);
     });
-}
+}*/
 
 module.exports = {
   async getImagen(req, res) {
@@ -182,36 +195,37 @@ module.exports = {
     }
   },
   async crearIncidencia(req, res) {
-    const id = await idIncidencia();
-    const usuario = req.body.Usuario;
-    const img = req.body.img;
-    console.log(img);
-    const incidencia = T_Incidencias.create({
-      CT_Id_Incidencia: id,
-      CF_Fecha_Hora: new Date(),
-      CT_Titulo: req.body.CT_Titulo,
-      CT_Descripcion: req.body.CT_Descripcion,
-      CT_Lugar: req.body.CT_Lugar,
-      CN_Id_Estado: 1,
-    })
-      .then((incidencia) => {
-    registroIncidenteUsuario(usuario, id);
-    guardarImagen(id, img);
-    T_Bitacoras_Estado.create({
-      CT_Codigo_Usuario: usuario,
-      CN_Id_Estado: 0,
-      CN_Id_Nuevo_Estado: 1,
-      CT_Id_Incidencia: id,
-    });
-    res.status(201).json({
-          incidencia,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-        res.status(500).json(e);
-      });
-    
+    const transaction = await Sequelize.transaction();
+    try {
+      const id = await idIncidencia();
+      const usuario = req.body.Usuario;
+      const img = req.body.img;
+  
+      const incidencia = await T_Incidencias.create({
+        CT_Id_Incidencia: id,
+        CF_Fecha_Hora: new Date(),
+        CT_Titulo: req.body.CT_Titulo,
+        CT_Descripcion: req.body.CT_Descripcion,
+        CT_Lugar: req.body.CT_Lugar,
+        CN_Id_Estado: 1,
+      }, { transaction });
+  
+      await registroIncidenteUsuario(usuario, id, transaction);
+      await guardarImagen(id, img, transaction);
+      await T_Bitacoras_Estado.create({
+        CT_Codigo_Usuario: usuario,
+        CN_Id_Estado: 0,
+        CN_Id_Nuevo_Estado: 1,
+        CT_Id_Incidencia: id,
+      }, { transaction });
+  
+      await transaction.commit();
+      res.status(201).json({ incidencia });
+    } catch (e) {
+      await transaction.rollback();
+      console.log(e);
+      res.status(500).json(e);
+    }
   },
   async actualizarIncidencia(req, res) {
     try {
