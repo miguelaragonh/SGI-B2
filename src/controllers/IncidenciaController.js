@@ -47,10 +47,13 @@ async function enviarCorreo(idUsuario, idIncidencia) {
 }
 
 async function guardarImagen(id, img) {
+  console.log(img);
+  
   const imagen = T_Imagenes.create({
     CI_imagen: img,
-  })
-    .then((imagen) => {
+
+  })    .then((imagen) => {
+    console.log("imagen");
       const relacion = T_Imagenes_Incidentes.create({
         CT_Id_Incidencia: id,
         CN_Id_Imagen: imagen.CN_Id_Imagen,
